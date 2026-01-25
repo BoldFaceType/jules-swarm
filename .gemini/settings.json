@@ -1,0 +1,28 @@
+{
+  "mcpServers": {
+    "local-fs": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "./"]
+    },
+    "python-tools": {
+      "command": "uv",
+      "args": ["run", "mcp-server-python"]
+    }
+  },
+  "toolConfig": {
+    "allowList": [
+      "fs_read_file", "fs_write_file", "fs_list_directory",
+      "terminal_run_command"
+    ],
+    "denyList": [
+      "fs_delete_directory", "github_create_issue"
+    ]
+  },
+  "telemetry": {
+    "enabled": true,
+    "target": "gcp"
+  },
+  "extensions": {
+    "hooks": "./.gemini/hooks.js"
+  }
+}
