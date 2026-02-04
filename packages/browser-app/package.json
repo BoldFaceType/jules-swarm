@@ -1,0 +1,33 @@
+{
+  "name": "@jules-swarm/browser-app",
+  "version": "0.1.0",
+  "dependencies": {
+    "@theia/core": "1.67.0",
+    "@theia/ai-chat": "1.67.0",
+    "@theia/filesystem": "1.67.0",
+    "@theia/workspace": "1.67.0",
+    "@theia/preferences": "1.67.0",
+    "@theia/process": "1.67.0",
+    "@theia/terminal": "1.67.0",
+    "@theia/editor": "1.67.0",
+    "@theia/monaco": "1.67.0",
+    "@theia/navigator": "1.67.0",
+    "@jules-swarm/ai-swarm-orchestrator": "0.1.0"
+  },
+  "devDependencies": {
+    "@theia/cli": "1.67.0"
+  },
+  "scripts": {
+    "prepare": "theia build --mode development",
+    "start": "theia start --plugins=local-dir:../../plugins",
+    "build": "theia build --mode development",
+    "watch": "theia build --watch --mode development"
+  },
+  "theia": {
+    "frontend": {
+      "config": {
+        "applicationName": "Jules Swarm IDE"
+      }
+    }
+  }
+}

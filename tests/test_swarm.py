@@ -28,7 +28,7 @@ async def test_launch_agent_constructs_correct_command():
         
         # Mock file opening and git operations
         with patch("builtins.open", new_callable=MagicMock), \
-             patch("swarm_control.run_command", new_callable=AsyncMock):
+             patch("subprocess.run"):
             
             await swarm_control.launch_agent(task)
             
@@ -41,5 +41,5 @@ async def test_launch_agent_constructs_correct_command():
             assert "--yolo" in cmd_list, "Agent must run in YOLO mode for background execution"
             assert "--output-format" in cmd_list
             assert "stream-json" in cmd_list, "Output must be streaming JSON for logging"
-            # We can't easily check the index of --context + 1 without parsing, but we check presence
-            assert "--context" in cmd_list
+            # Context is now injected via -p flag with @file syntax
+            assert "-p" in cmd_list

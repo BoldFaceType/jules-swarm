@@ -1,0 +1,18 @@
+---
+isCommand: true
+commandName: swarm:recover
+agent: SwarmOrchestrator
+description: Recover an interrupted swarm session
+---
+Check for recoverable swarm sessions and present options to the user.
+
+For each recoverable session show:
+- Session ID and original task
+- When it was interrupted
+- Worker status at interruption
+- Files that were modified
+
+Present options:
+1. Resume session (attempt to restart incomplete workers)
+2. Salvage changes (merge completed work, discard incomplete)
+3. Discard session (clean up worktrees, lose all changes)

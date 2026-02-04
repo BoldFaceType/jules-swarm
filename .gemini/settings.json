@@ -1,28 +1,88 @@
 {
-  "mcpServers": {
-    "local-fs": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "./"]
-    },
-    "python-tools": {
-      "command": "uv",
-      "args": ["run", "mcp-server-python"]
+    "tools": {
+        "autoAccept": true,
+        "tools": {
+            "enableHooks": true,
+            "sandbox": "docker",
+            "core": [
+                "ReadFileTool",
+                "GlobTool",
+                "WriteFileTool",
+                "ReplaceTool",
+                "ShellTool(pytest)",
+                "ShellTool(black)",
+                "ShellTool(git add)",
+                "ShellTool(git commit)",
+                "ShellTool(git status)",
+                "ShellTool(git diff)"
+            ],
+            "exclude": [
+                "ShellTool(rm -rf)",
+                "ShellTool(git push)",
+                "ShellTool(git reset --hard)",
+                "ShellTool(shutdown)",
+                "ShellTool(mkfs)"
+            ]
+        },
+        "hooks": {
+            "enabled": true,
+            "BeforeTool": [
+                {
+                    "matcher": "*",
+                    "hooks": [
+                        {
+                            "name": "security-guard",
+                            "type": "command",
+                            "command": "$GEMINI_PROJECT_DIR/.gemini/hooks/security-guard.sh",
+                            "description": "Block dangerous operations and sandbox escapes",
+                            "timeout": 5000
+                        }
+                    ]
+                }
+            ],
+            "AfterTool": [
+                {
+                    "matcher": "WriteFileTool|ReplaceTool",
+                    "hooks": [
+                        {
+                            "name": "auto-format",
+                            "type": "command",
+                            "command": "$GEMINI_PROJECT_DIR/.gemini/hooks/auto-format.sh",
+                            "description": "Run black formatter after file writes",
+                            "timeout": 10000
+                        }
+                    ]
+                }
+            ]
+        },
+        "mcpServers": {
+            "local-fs": {
+                "command": "npx",
+                "args": ["-y", "@modelcontextprotocol/server-filesystem", "./"],
+                "trust": false,
+                "timeout": 5000
+            },
+            "python-tools": {
+                "command": "uv",
+                "args": ["run", "mcp-server-python"],
+                "trust": false
+            }
+        },
+        "mcp": {
+            "allowed": ["local-fs", "python-tools"],
+            "excluded": []
+        },
+        "telemetry": {
+            "enabled": true,
+            "target": "gcp",
+            "logPrompts": false
+        },
+        "context": {
+            "fileName": ["GEMINI.md"],
+            "loadFromIncludeDirectories": true
+        },
+        "privacy": {
+            "usageStatisticsEnabled": true
+        }
     }
-  },
-  "toolConfig": {
-    "allowList": [
-      "fs_read_file", "fs_write_file", "fs_list_directory",
-      "terminal_run_command"
-    ],
-    "denyList": [
-      "fs_delete_directory", "github_create_issue"
-    ]
-  },
-  "telemetry": {
-    "enabled": true,
-    "target": "gcp"
-  },
-  "extensions": {
-    "hooks": "./.gemini/hooks.js"
-  }
 }

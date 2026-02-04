@@ -1,0 +1,21 @@
+{
+  "name": "parallel-jules-worker",
+  "version": "0.1.0",
+  "description": "Worker enhancement for Parallel Jules Swarm - enables bidirectional MCP communication with Theia orchestrator",
+  "contextFileName": "GEMINI.md",
+  "mcpServers": {
+    "theia-orchestrator": {
+      "url": "http://localhost:3001/mcp",
+      "description": "Callback to Theia orchestrator for progress reporting and conflict signaling",
+      "protocolVersion": "2024-11-05",
+      "capabilities": {
+        "tools": {}
+      },
+      "serverInfo": {
+        "name": "theia-orchestrator",
+        "version": "0.1.0"
+      }
+    }
+  },
+  "excludeTools": []
+}

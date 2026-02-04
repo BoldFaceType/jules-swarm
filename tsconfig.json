@@ -1,0 +1,7 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/ai-swarm-orchestrator" },
+    { "path": "packages/browser-app" }
+  ]
+}

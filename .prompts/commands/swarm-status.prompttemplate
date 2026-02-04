@@ -1,0 +1,13 @@
+---
+isCommand: true
+commandName: swarm:status
+agent: SwarmOrchestrator
+description: Check status of all swarm workers
+---
+Report current status of all active swarm workers:
+- Worker ID and task scope
+- Current status (from MCP callbacks)
+- Files modified
+- Any conflicts or blockers
+
+Format as a clear table with action buttons.

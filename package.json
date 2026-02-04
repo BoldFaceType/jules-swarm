@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "start": "npm start --workspace=@jules-swarm/browser-app"
+  },
+  "devDependencies": {
+    "@theia/cli": "1.67.0",
+    "typescript": "^5.0.0"
+  }
+}

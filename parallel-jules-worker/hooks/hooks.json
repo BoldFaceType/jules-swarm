@@ -1,0 +1,55 @@
+{
+  "hooks": {
+    "BeforeAgent": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "name": "inject-worker-context",
+            "type": "command",
+            "command": "powershell -ExecutionPolicy Bypass -File ${extensionPath}/hooks/scripts/inject-context.ps1",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "BeforeTool": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+             "name": "enforce-scope",
+             "type": "command",
+             "command": "powershell -ExecutionPolicy Bypass -File ${extensionPath}/hooks/scripts/enforce-scope.ps1",
+             "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "AfterTool": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "name": "emit-telemetry",
+            "type": "command",
+            "command": "powershell -ExecutionPolicy Bypass -File ${extensionPath}/hooks/scripts/emit-telemetry.ps1",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "name": "report-session",
+            "type": "command",
+            "command": "powershell -ExecutionPolicy Bypass -File ${extensionPath}/hooks/scripts/report-session.ps1",
+            "timeout": 5000
+          }
+        ]
+      }
+    ]
+  }
+}

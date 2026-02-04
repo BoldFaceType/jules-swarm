@@ -1,0 +1,44 @@
+.swarm-dashboard {
+    padding: 16px;
+    font-family: var(--theia-ui-font-family);
+}
+
+.worker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.worker-card {
+    border: 1px solid var(--theia-panel-border);
+    border-radius: 8px;
+    padding: 12px;
+    background: var(--theia-editor-background);
+}
+
+.worker-card.worker-running {
+    border-color: var(--theia-progressBar-background);
+}
+
+.worker-card.worker-complete {
+    border-color: var(--theia-testing-iconPassed);
+}
+
+.worker-card.worker-error {
+    border-color: var(--theia-testing-iconFailed);
+}
+
+.progress-bar {
+    height: 4px;
+    background: var(--theia-progressBar-background);
+    border-radius: 2px;
+    margin: 8px 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--theia-progressBar-foreground);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}

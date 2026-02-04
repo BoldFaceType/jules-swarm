@@ -1,0 +1,16 @@
+---
+isCommand: true
+commandName: swarm
+agent: SwarmOrchestrator
+description: Start parallel execution of a coding task
+---
+Analyze the following task and decompose it for parallel execution:
+
+Task: $ARGUMENTS
+
+Instructions:
+1. Identify files/modules that can be worked on independently
+2. Determine optimal number of workers (max 4)
+3. Define non-overlapping task scopes
+4. Present decomposition plan for approval
+5. After approval, spawn workers via Terminal Manager

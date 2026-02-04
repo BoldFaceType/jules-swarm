@@ -1,0 +1,11 @@
+---
+isCommand: true
+commandName: swarm:abort
+agent: SwarmOrchestrator
+description: Abort all swarm workers
+---
+Terminate all active swarm workers:
+1. Send SIGTERM to all worker terminals
+2. Preserve worktrees for review (don't auto-delete)
+3. Report final status of each worker
+4. Ask human what to do with partial work
