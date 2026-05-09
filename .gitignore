@@ -6,6 +6,17 @@ __pycache__/
 dist/
 out/
 build/
+lib/
+src-gen/
+*.tsbuildinfo
+
+# Theia generated application output
+TheiaIDE/resources/app.asar
+TheiaIDE/resources/app.asar.unpacked/
+TheiaIDE/resources/app/lib/
+TheiaIDE/resources/app/package.json
+packages/browser-app/lib/
+packages/browser-app/src-gen/
 
 # Environment
 .env
@@ -18,7 +29,17 @@ logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log*
+pnpm-debug.log*
+
+# Local agent/editor state
+.claude/
+.vscode/
+.gemini/commands/
+*.local.json
+
+# Archives and generated release bundles
+*.zip
+*.asar
 
 # System
 .DS_Store
